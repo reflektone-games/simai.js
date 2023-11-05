@@ -15,13 +15,13 @@ export class Tokenizer {
 
     private readonly endOfFileChar: string = "E";
 
-    private readonly eachDividerChars: Set<string> = new Set(["/", "`"]);
+    private readonly eachDividerChars: ReadonlySet<string> = new Set(["/", "`"]);
 
-    private readonly decoratorChars: Set<string> = new Set(["f", "b", "x", "h", "m", "!", "?", "@", "$"]);
+    private readonly decoratorChars: ReadonlySet<string> = new Set(["f", "b", "x", "h", "m", "!", "?", "@", "$"]);
 
-    private readonly slideChars: Set<string> = new Set(["-", ">", "<", "^", "p", "q", "v", "V", "s", "z", "w"]);
+    private readonly slideChars: ReadonlySet<string> = new Set(["-", ">", "<", "^", "p", "q", "v", "V", "s", "z", "w"]);
 
-    private readonly separatorChars: Set<string> = new Set([
+    private readonly separatorChars: ReadonlySet<string> = new Set([
         "\r",
         "\t",
         this.lineSeparator,
@@ -178,14 +178,14 @@ export class Tokenizer {
     }
 
     /**
-     * @returns the <see cref="_current" /> glyph, and increments by one.
+     * @returns the {@link _current} glyph, and increments by one.
      */
     private advance(): string {
         return this._sequence[this._current++];
     }
 
     /**
-     * @returns the <see cref="_current" /> glyph without incrementing.
+     * @returns the {@link _current} glyph without incrementing.
      */
     private peek(): string {
         return this.isAtEnd ? "" : this._sequence[this._current];
