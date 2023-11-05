@@ -34,4 +34,5 @@ jobs:
 
             - run: pnpm install --frozen-lockfile
             - run: pnpm run test
+            - run: pnpm dlx publint --level error
             - run: pnpm pack
