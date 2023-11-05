@@ -4,34 +4,29 @@
 
 # simaisharp.js
 
-simaisharp.js is an interpreter and serializer for [simai](https://w.atwiki.jp/simai/), 
+simaisharp.js is an interpreter and serializer for [simai](https://w.atwiki.jp/simai/),
 a custom chart format for the arcade rhythm game [maimai](https://maimai.sega.jp/),
 written in [Typescript](https://www.typescriptlang.org/).
 
 # Getting Started
 
-To use simaisharp.js in your own project, 
+To use simaisharp.js in your own project,
 
 Then, use the following method to deserialize a chart:
 
-<!--
 ```typescript
-// Specify the chart file
-var filePath = "Z:\path\to\your\chart.txt";
-
 // Read it into your program
-var simaiFile = new SimaiFile(filePath);
+const simaiFile = new SimaiFile(chartContent);
 
 // Specify a key to read, without the "&"
-var chartKey = "inote_5";
+const chartKey = "inote_5";
 
 // Get the corresponding value as a string
-var rawChart = simaiFile.getValue(chartKey);
+const rawChart = simaiFile.getValue(chartKey);
 
 // Deserialize the chart
-var chart = SimaiConvert.deserialize(rawChart);
+const chart = SimaiConvert.deserialize(rawChart);
 ```
--->
 
 # Contribute
 
