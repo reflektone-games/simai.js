@@ -6,7 +6,7 @@ on:
 
 jobs:
     ci:
-        name: "Mocha test"
+        name: "Tests"
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -34,5 +34,5 @@ jobs:
 
             - run: pnpm install --frozen-lockfile
             - run: pnpm run test
+            - run: pnpm run build
             - run: pnpm dlx publint --level error
-            - run: pnpm pack
