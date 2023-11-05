@@ -2,18 +2,27 @@
     "name": "simai.js",
     "version": "1.0.0",
     "description": "A serializer(wip)/deserializer for the rhythm game chart format simai.",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "scripts": {
         "test": "mocha",
-        "prepack": "tsc"
+        "build": "del-cli dist && tsup",
+        "prepack": "pnpm run build"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/reflektone-games/simai.js.git"
     },
     "keywords": [
-        "TODO"
+        "deserializer",
+        "data-format",
+        "maimai",
+        "maimai-dx"
     ],
     "author": "reflektone-games",
     "license": "MIT",
@@ -24,8 +33,10 @@
     "devDependencies": {
         "@types/mocha": "^10.0.3",
         "@types/node": "^20.8.10",
+        "del-cli": "^5.1.0",
         "mocha": "^10.2.0",
-        "ts-node": "^10.9.1"
+        "ts-node": "^10.9.1",
+        "tsup": "^7.2.0"
     },
     "volta": {
         "node": "18.12.0",
