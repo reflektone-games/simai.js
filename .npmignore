@@ -1,0 +1,9 @@
+.github/
+.vscode/
+tests/
+src/
+
+.mocharc.jsonc
+.editorconfig
+tsconfig.json
+.prettierrc
