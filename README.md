@@ -1,6 +1,14 @@
-<!-- TODO: Rework README -->
-
 ![simaisharp.js Banner](./assets/banner.jpg)
+
+<!-- markdownlint-disable -->
+<div align="center">
+    <p>
+        <a href="https://www.npmjs.com/package/simai.js" target="_blank"><img src="https://img.shields.io/npm/v/simai.js.svg" alt="npm version"/></a>
+        <a href="https://discord.gg/6fpETgpvjZ" target="_blank"><img src="https://img.shields.io/discord/892807792996536453.svg" alt="discord"/></a>
+        <a href="https://github.com/reflektone-games/simai.js/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/reflektone-games/simai.js.svg" alt="license"/></a>
+    </p>
+</div>
+<!-- markdownlint-enable -->
 
 # simaisharp.js
 
