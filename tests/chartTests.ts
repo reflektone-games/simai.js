@@ -1,6 +1,6 @@
 import { NoteGroup } from "../src/structures/noteGroup";
 import { Location } from "../src/structures/location";
-import { SimaiConvert, SimaiFile } from "../";
+import { SimaiConvert, SimaiFile } from "../src";
 import fs from "node:fs/promises";
 import assert from "node:assert";
 import path from "node:path";

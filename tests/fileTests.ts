@@ -1,9 +1,9 @@
+import { SimaiFile } from "../src";
 import assert from "node:assert";
-import { SimaiFile } from "../";
 import path from "node:path";
 import fs from "node:fs";
 
-// simai.js doesn't support reading charts from file due to compaltibility with the web, so we have to use node:fs/promises to read the file.
+// simai.js doesn't support reading charts from file due to compaltibility with the web, so we have to use node:fs to read the file.
 
 const testChartPath = path.join(__dirname, "./resources/fileTests/");
 
