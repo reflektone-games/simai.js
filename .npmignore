@@ -3,6 +3,7 @@
 tests/
 src/
 
+tsup.config.ts
 .mocharc.jsonc
 .editorconfig
 tsconfig.json
