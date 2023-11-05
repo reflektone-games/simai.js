@@ -6,7 +6,7 @@ export class SimaiFile {
         this.data = data;
     }
 
-    public toKeyValuePairs(): Map<string, string> {
+    public toKeyValuePairs(): ReadonlyMap<string, string> {
         let currentKey: string = "";
         let currentValue: string = "";
 
