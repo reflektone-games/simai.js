@@ -1,11 +1,11 @@
 {
     "name": "simai.js",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "A serializer(wip)/deserializer for the rhythm game chart format simai.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
-    "runkitExample": "examples/runkit.js",
+    "runkitExampleFilename": "examples/runkit.js",
     "exports": {
         "import": {
             "types": "./dist/index.d.mts",
