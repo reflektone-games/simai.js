@@ -67,7 +67,7 @@ describe("SimaiConvert", () => {
         assert(chart.noteCollections[0][7].location.equals(new Location(7, NoteGroup.Tap)));
     });
 
-    it("should be able to read a chart's tempo with defualt subdivision", async () => {
+    it("should be able to read a chart's tempo with default subdivision", async () => {
         const chartText = await fs.readFile(
             path.join(testChartPath, "./CanReadTempoWithDefaultSubdivisions.txt"),
             "utf-8"
@@ -80,7 +80,7 @@ describe("SimaiConvert", () => {
         assert(chart.noteCollections[1].time === 1);
     });
 
-    it("should be able to read a chart's tempo changes with defualt subdivision", async () => {
+    it("should be able to read a chart's tempo changes with default subdivision", async () => {
         const chartText = await fs.readFile(
             path.join(testChartPath, "./CanReadTempoChangesWithDefaultSubdivisions.txt"),
             "utf-8"
