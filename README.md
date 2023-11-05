@@ -1,4 +1,4 @@
-![simaisharp.js Banner](./assets/banner.jpg)
+![simai.js Banner](./assets/banner.jpg)
 
 <!-- markdownlint-disable -->
 <div align="center">
@@ -10,15 +10,21 @@
 </div>
 <!-- markdownlint-enable -->
 
-# simaisharp.js
+# simai.js
 
-simaisharp.js is an interpreter and serializer for [simai](https://w.atwiki.jp/simai/),
+simai.js is an interpreter and serializer for [simai](https://w.atwiki.jp/simai/),
 a custom chart format for the arcade rhythm game [maimai](https://maimai.sega.jp/),
 written in [Typescript](https://www.typescriptlang.org/).
 
 # Getting Started
 
-To use simaisharp.js in your own project,
+To use simai.js in your own project, install it via [npm](https://www.npmjs.com/package/simai.js)
+
+```bash
+pnpm add simai.js
+yarn install simai.js
+npm install simai.js
+```
 
 Then, use the following method to deserialize a chart:
 
