@@ -2,7 +2,7 @@ import { NoteGroup } from "./noteGroup";
 
 export class Location {
     /**
-     * Describes which button / sensor in the <see cref="group" /> this element is pointing to.
+     * Describes which button / sensor in the {@link group} this element is pointing to.
      */
     public index: number;
 

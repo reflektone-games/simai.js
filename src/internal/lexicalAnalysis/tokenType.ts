@@ -1,3 +1,6 @@
+import { SlidePath } from "../../structures/slidePath";
+import { SlideType } from "../../structures/slideType";
+
 export enum TokenType {
     None,
     Tempo,
@@ -16,12 +19,12 @@ export enum TokenType {
     Decorator,
 
     /**
-     * Takes a <see cref="SlideType" /> and target vertices
+     * Takes a {@link SlideType} and target vertices
      */
     Slide,
 
     /**
-     * Usually denotes the length of a hold or a <see cref="SlidePath" />
+     * Usually denotes the length of a hold or a {@link SlideType}
      */
     Duration,
 
