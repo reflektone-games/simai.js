@@ -29,6 +29,11 @@ npm install simai.js
 Then, use the following method to deserialize a chart:
 
 ```typescript
+import { SimaiFile, SimaiConvert } from "simai.js";
+
+// or CommonJS version
+// const { SimaiFile, SimaiConvert } = require("simai.js");
+
 // Read it into your program
 const simaiFile = new SimaiFile(chartContent);
 
