@@ -1,5 +1,5 @@
-import { Location } from "./location";
 import { SlideType } from "./slideType";
+import { Location } from "./location";
 
 export class SlideSegment {
     /**

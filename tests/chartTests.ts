@@ -1,6 +1,6 @@
 import { NoteGroup } from "../src/structures/noteGroup";
-import { SimaiConvert, SimaiFile } from "../src/index";
 import { Location } from "../src/structures/location";
+import { SimaiConvert, SimaiFile } from "../";
 import fs from "node:fs/promises";
 import assert from "node:assert";
 import path from "node:path";
@@ -14,7 +14,7 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 0);
+        assert.equal(chart.noteCollections.length, 0);
     });
 
     it("should be able to read a chart's note (singular location)", async () => {
@@ -23,8 +23,8 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 1);
-        assert(chart.noteCollections[0].length === 1);
+        assert.equal(chart.noteCollections.length, 1);
+        assert.equal(chart.noteCollections[0].length, 1);
         assert(chart.noteCollections[0][0].location.equals(new Location(0, NoteGroup.Tap)));
     });
 
@@ -34,8 +34,8 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 1);
-        assert(chart.noteCollections[0].length === 8);
+        assert.equal(chart.noteCollections.length, 1);
+        assert.equal(chart.noteCollections[0].length, 8);
         assert(chart.noteCollections[0][0].location.equals(new Location(0, NoteGroup.Tap)));
         assert(chart.noteCollections[0][1].location.equals(new Location(1, NoteGroup.Tap)));
         assert(chart.noteCollections[0][2].location.equals(new Location(2, NoteGroup.Tap)));
@@ -55,8 +55,8 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 1);
-        assert(chart.noteCollections[0].length === 8);
+        assert.equal(chart.noteCollections.length, 1);
+        assert.equal(chart.noteCollections[0].length, 8);
         assert(chart.noteCollections[0][0].location.equals(new Location(0, NoteGroup.Tap)));
         assert(chart.noteCollections[0][1].location.equals(new Location(1, NoteGroup.Tap)));
         assert(chart.noteCollections[0][2].location.equals(new Location(2, NoteGroup.Tap)));
@@ -76,8 +76,8 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 2);
-        assert(chart.noteCollections[1].time === 1);
+        assert.equal(chart.noteCollections.length, 2);
+        assert.equal(chart.noteCollections[1].time, 1);
     });
 
     it("should be able to read a chart's tempo changes with default subdivision", async () => {
@@ -89,8 +89,8 @@ describe("SimaiConvert", () => {
         const simaiFile = new SimaiFile(chartText);
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_1"));
 
-        assert(chart.noteCollections.length === 3);
-        assert(chart.noteCollections[1].time === 1);
-        assert(chart.noteCollections[2].time === 1.5);
+        assert.equal(chart.noteCollections.length, 3);
+        assert.equal(chart.noteCollections[1].time, 1);
+        assert.equal(chart.noteCollections[2].time, 1.5);
     });
 });

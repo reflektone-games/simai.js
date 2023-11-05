@@ -10,7 +10,7 @@ export class SimaiFile {
         let currentKey: string = "";
         let currentValue: string = "";
 
-        let lines: string[] = this.data.replace("\r\n", "\n").split("\n");
+        let lines: string[] = this.data.replace(/\r\n/g, "\n").split("\n");
         let result: Map<string, string> = new Map<string, string>();
 
         for (let line of lines) {
@@ -29,9 +29,7 @@ export class SimaiFile {
         }
 
         // Incase there is no trailing newline
-        if (currentKey) {
-            result.set(currentKey, currentValue.trim());
-        }
+        if (currentKey) result.set(currentKey, currentValue.trim());
 
         return result;
     }
