@@ -1,8 +1,8 @@
 import { UnexpectedCharacterException } from "../errors/unexpectedCharacterException";
-import { UnsupportedSyntaxException } from "../errors/unsupportedSyntaxException";
 import { UnterminatedSectionException } from "../errors/unterminatedSectionException";
-import { Token } from "./token";
+import { UnsupportedSyntaxException } from "../errors/unsupportedSyntaxException";
 import { TokenType } from "./tokenType";
+import { Token } from "./token";
 
 export class Tokenizer {
     private readonly space: string = String.fromCharCode(0x0020);

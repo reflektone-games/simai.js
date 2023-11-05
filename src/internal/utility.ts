@@ -1,6 +1,6 @@
 export type FileEncoding = "utf7" | "utf8" | "utf16le" | "utf16be" | "utf32le" | "utf32be" | "unicode" | "unicodebe";
 
-export default new (class Utility {
+export class Utility {
     static removeLineEndings(str: string): string {
         return str.replace(/(\r\n|\n|\r)/gm, "");
     }
@@ -139,4 +139,4 @@ export default new (class Utility {
 
         return "utf8";
     }
-})();
+}

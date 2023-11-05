@@ -1,14 +1,14 @@
-import { Location } from "../../../structures/location";
-import { Note } from "../../../structures/note";
-import { NoteType } from "../../../structures/noteType";
-import { SlidePath } from "../../../structures/slidePath";
-import { SlideSegment } from "../../../structures/slideSegment";
-import { SlideType } from "../../../structures/slideType";
-import { ScopeMismatchException, ScopeType } from "../../errors/scopeMismatchException";
 import { UnexpectedCharacterException } from "../../errors/unexpectedCharacterException";
+import { ScopeMismatchException, ScopeType } from "../../errors/scopeMismatchException";
 import { UnsupportedSyntaxException } from "../../errors/unsupportedSyntaxException";
-import { Token } from "../../lexicalAnalysis/token";
+import { SlideSegment } from "../../../structures/slideSegment";
 import { TokenType } from "../../lexicalAnalysis/tokenType";
+import { SlidePath } from "../../../structures/slidePath";
+import { SlideType } from "../../../structures/slideType";
+import { Location } from "../../../structures/location";
+import { NoteType } from "../../../structures/noteType";
+import { Token } from "../../lexicalAnalysis/token";
+import { Note } from "../../../structures/note";
 import { Deserializer } from "../deserializer";
 import { TimingChange } from "../timingChange";
 

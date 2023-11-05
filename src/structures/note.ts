@@ -1,10 +1,10 @@
-import { Location } from "./location";
 import { NoteAppearance } from "./noteAppearance";
 import { NoteCollection } from "./noteCollection";
 import { NoteStyles } from "./noteStyles";
-import { NoteType } from "./noteType";
 import { SlideMorph } from "./slideMorph";
 import { SlidePath } from "./slidePath";
+import { Location } from "./location";
+import { NoteType } from "./noteType";
 
 export class Note {
     public parentCollection: NoteCollection;

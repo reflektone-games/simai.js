@@ -1,5 +1,5 @@
-import { Tokenizer } from "./internal/lexicalAnalysis/tokenizer";
 import { Deserializer } from "./internal/syntacticAnalysis/deserializer";
+import { Tokenizer } from "./internal/lexicalAnalysis/tokenizer";
 import { MaiChart } from "./structures/maiChart";
 
 export class SimaiConvert {

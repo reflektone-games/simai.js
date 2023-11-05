@@ -1,18 +1,18 @@
+import { ScopeMismatchException, ScopeType } from "../errors/scopeMismatchException";
+import { UnsupportedSyntaxException } from "../errors/unsupportedSyntaxException";
+import { NoteCollection } from "../../structures/noteCollection";
+import { SubdivisionReader } from "./states/subdivisionReader";
+import { TokenType } from "../lexicalAnalysis/tokenType";
+import { NoteGroup } from "../../structures/noteGroup";
+import { SlideType } from "../../structures/slideType";
 import { EachStyle } from "../../structures/eachStyle";
 import { Location } from "../../structures/location";
 import { MaiChart } from "../../structures/maiChart";
-import { NoteCollection } from "../../structures/noteCollection";
-import { NoteGroup } from "../../structures/noteGroup";
-import { SlideType } from "../../structures/slideType";
-import { Enumerator } from "../enumerator";
-import { ScopeMismatchException, ScopeType } from "../errors/scopeMismatchException";
-import { UnsupportedSyntaxException } from "../errors/unsupportedSyntaxException";
-import { Token } from "../lexicalAnalysis/token";
-import { TokenType } from "../lexicalAnalysis/tokenType";
-import { NoteReader } from "./states/noteReader";
-import { SubdivisionReader } from "./states/subdivisionReader";
 import { TempoReader } from "./states/tempoReader";
+import { Token } from "../lexicalAnalysis/token";
+import { NoteReader } from "./states/noteReader";
 import { TimingChange } from "./timingChange";
+import { Enumerator } from "../enumerator";
 
 export class Deserializer {
     private readonly _chart: MaiChart = new MaiChart();

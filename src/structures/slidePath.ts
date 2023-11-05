@@ -1,6 +1,6 @@
+import { SlideSegment } from "./slideSegment";
 import { Location } from "./location";
 import { NoteType } from "./noteType";
-import { SlideSegment } from "./slideSegment";
 
 export class SlidePath {
     public startLocation: Location = new Location(0, 0);
