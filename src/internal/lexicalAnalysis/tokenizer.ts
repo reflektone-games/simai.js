@@ -85,6 +85,14 @@ export class Tokenizer {
                 return undefined;
 
             case this.endOfFileChar:
+                try {
+                    const [isLocationToken, locationLength] = this.tryScanLocationToken();
+                    if (isLocationToken) {
+                        this._current += locationLength - 1;
+                        return this.compileToken(TokenType.Location);
+                    }
+                } catch (ignored) {}
+
                 return this.compileToken(TokenType.EndOfFile);
 
             case "|": {

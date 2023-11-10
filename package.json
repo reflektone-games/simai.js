@@ -1,6 +1,6 @@
 {
     "name": "simai.js",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "A serializer(wip)/deserializer for the rhythm game chart format simai.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -38,8 +38,8 @@
     },
     "homepage": "https://github.com/reflektone-games/simai.js#readme",
     "devDependencies": {
-        "@types/mocha": "^10.0.3",
-        "@types/node": "^20.8.10",
+        "@types/mocha": "^10.0.4",
+        "@types/node": "^20.9.0",
         "del-cli": "^5.1.0",
         "mocha": "^10.2.0",
         "ts-node": "^10.9.1",
