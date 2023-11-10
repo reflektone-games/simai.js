@@ -65,18 +65,6 @@ export class Tokenizer {
         else if (this.eachDividerChars.has(c)) return this.compileToken(TokenType.EachDivider);
         else if (this.separatorChars.has(c)) return undefined;
 
-        const [isLocationToken, locationLength] = this.tryScanLocationToken();
-        if (isLocationToken) {
-            this._current += locationLength - 1;
-            return this.compileToken(TokenType.Location);
-        }
-
-        const [isSlideDeclaration, slideLength] = this.isReadingSlideDeclaration();
-        if (isSlideDeclaration) {
-            this._current += slideLength - 1;
-            return this.compileToken(TokenType.Slide);
-        }
-
         switch (c) {
             case ",":
                 return this.compileToken(TokenType.TimeStep);
@@ -106,10 +94,21 @@ export class Tokenizer {
 
                 return undefined;
             }
-
-            default:
-                throw new UnsupportedSyntaxException(this._line, this._charIndex);
         }
+
+        const [isLocationToken, locationLength] = this.tryScanLocationToken();
+        if (isLocationToken) {
+            this._current += locationLength - 1;
+            return this.compileToken(TokenType.Location);
+        }
+
+        const [isSlideDeclaration, slideLength] = this.isReadingSlideDeclaration();
+        if (isSlideDeclaration) {
+            this._current += slideLength - 1;
+            return this.compileToken(TokenType.Slide);
+        }
+
+        throw new UnsupportedSyntaxException(this._line, this._charIndex);
     }
 
     /**
