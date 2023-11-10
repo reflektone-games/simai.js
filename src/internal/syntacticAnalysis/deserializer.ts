@@ -165,7 +165,7 @@ export class Deserializer {
         let group = NoteGroup.Tap;
 
         if (isSensor) {
-            group = NoteGroup[token.lexeme[0].charCodeAt(0) - "A".charCodeAt(0) + 1] as unknown as NoteGroup;
+            group = (token.lexeme[0].charCodeAt(0) - "A".charCodeAt(0) + 1) as NoteGroup;
 
             if (group === NoteGroup.CSensor) {
                 return [true, new Location(0, group)];
