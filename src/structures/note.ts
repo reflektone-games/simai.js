@@ -41,4 +41,38 @@ export class Note {
 
         return baseValue;
     }
+
+    public write(): string {
+        let writer = "";
+
+        writer += this.location.toString();
+
+        if ((this.styles & NoteStyles.Ex) != 0) writer += "x";
+
+        if ((this.styles & NoteStyles.Mine) != 0) writer += "m";
+
+        if (this.type === NoteType.ForceInvalidate) writer += this.slideMorph === SlideMorph.FadeIn ? "?" : "!";
+
+        switch (this.appearance) {
+            case NoteAppearance.ForceNormal:
+                writer += "@";
+                break;
+            case NoteAppearance.ForceStarSpinning:
+                writer += "$$";
+                break;
+            case NoteAppearance.ForceStar:
+                writer += "$";
+                break;
+        }
+
+        if (this.length) `h[#${this.length.toFixed(7)}]`;
+
+        for (let i = 0; i < this.slidePaths.length; i++) {
+            if (i > 0) writer += "*";
+
+            writer += this.slidePaths[i].write();
+        }
+
+        return writer;
+    }
 }

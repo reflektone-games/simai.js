@@ -93,4 +93,14 @@ describe("SimaiConvert", () => {
         assert.equal(chart.noteCollections[1].time, 1);
         assert.equal(chart.noteCollections[2].time, 1.5);
     });
+
+    it("should be able to serialize", async () => {
+        const chartText = await fs.readFile(path.join(testChartPath, "../fileTests/0.txt"), "utf-8");
+
+        const simaiFile = new SimaiFile(chartText);
+        const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_3"));
+
+        const serialized = SimaiConvert.serialize(chart);
+        assert.notEqual(serialized, "");
+    });
 });
