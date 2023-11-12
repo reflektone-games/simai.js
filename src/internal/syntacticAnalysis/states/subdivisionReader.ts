@@ -44,6 +44,7 @@ export class SubdivisionReader {
         }
 
         newTimingChange.subdivisions = subdivision;
+        newTimingChange.time = parent.currentTime;
 
         if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 1.401298e-45)
             parent.timingChanges.pop();

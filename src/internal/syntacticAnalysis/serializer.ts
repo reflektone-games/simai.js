@@ -15,7 +15,7 @@ export class Serializer {
         let writer = "";
 
         writer += `(${chart.timingChanges[this._currentTimingChange].tempo})`;
-        writer += `{{${chart.timingChanges[this._currentTimingChange].subdivisions}}}`;
+        writer += `{${chart.timingChanges[this._currentTimingChange].subdivisions}}`;
 
         while (this._currentTime <= (chart.finishTiming ? chart.finishTiming : 0)) {
             if (
@@ -39,7 +39,7 @@ export class Serializer {
                             chart.timingChanges[this._currentTimingChange - 1].subdivisions
                     ) > 1.401298E-45
                 ) {
-                    writer += `{{${chart.timingChanges[this._currentTimingChange].subdivisions}}}`;
+                    writer += `{${chart.timingChanges[this._currentTimingChange].subdivisions}}`;
                 }
             }
 
