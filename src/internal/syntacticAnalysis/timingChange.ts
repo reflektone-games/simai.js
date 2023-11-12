@@ -18,7 +18,7 @@ export class TimingChange {
         this.subdivisions = subdivisions;
     }
 
-    explicitOverride(value: number) {
+    public setSeconds(value: number) {
         this.tempo = 60 / value;
         this.subdivisions = 4;
     }

@@ -24,12 +24,12 @@ export class Deserializer {
     /**
      * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
      */
-    public readonly timingChanges: TimingChange[] = [new TimingChange(0, 4)];
+    public readonly timingChanges: TimingChange[] = [];
     private _maxFinishTime: number = 0;
     /**
      * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
      */
-    public currentTime: number = 0;
+    public currentTime: number;
     /**
      * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
      */
@@ -37,14 +37,14 @@ export class Deserializer {
     /**
      * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
      */
-    public currentTiming: TimingChange = new TimingChange(0, 0);
-    /**
-     * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
-     */
-    public endOfFile: boolean = false;
+    public endOfFile: boolean;
 
     constructor(sequence: Iterable<Token>) {
         this.enumerator = new Enumerator<Token>(sequence);
+        this.timingChanges.push(new TimingChange(0, 4));
+        this.currentNoteCollection = undefined;
+        this.currentTime = 0;
+        this.endOfFile = false;
     }
 
     public getChart(): MaiChart {
@@ -135,6 +135,7 @@ export class Deserializer {
         }
 
         this._chart.noteCollections = noteCollections;
+        this._chart.timingChanges = this.timingChanges;
 
         return this._chart;
     }

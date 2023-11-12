@@ -1,6 +1,7 @@
 import { UnexpectedCharacterException } from "../../errors/unexpectedCharacterException";
 import { Token } from "../../lexicalAnalysis/token";
 import { Deserializer } from "../deserializer";
+import { TimingChange } from "../timingChange";
 
 /**
  * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
@@ -13,11 +14,19 @@ export class SubdivisionReader {
             if (isNaN(explicitTempo))
                 throw new UnexpectedCharacterException(token.line, token.character + 1, '0~9, or "."');
 
-            // TODO: This might not copy the object and just be a reference.
-            const newTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
-            newTimingChange.explicitOverride(explicitTempo);
+            let newTimingChange;
+            {
+                const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
+                newTimingChange = new TimingChange(oldTimingChange.tempo, oldTimingChange.subdivisions);
+            }
 
-            if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 0.0001)
+            newTimingChange.setSeconds(explicitTempo);
+            newTimingChange.time = parent.currentTime;
+
+            if (
+                Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <=
+                1.401298e-45
+            )
                 parent.timingChanges.pop();
 
             parent.timingChanges.push(newTimingChange);
@@ -28,11 +37,15 @@ export class SubdivisionReader {
 
         if (isNaN(subdivision)) throw new UnexpectedCharacterException(token.line, token.character, '0~9, or "."');
 
-        const newTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
+        let newTimingChange;
+        {
+            const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
+            newTimingChange = new TimingChange(oldTimingChange.tempo, oldTimingChange.subdivisions);
+        }
+
         newTimingChange.subdivisions = subdivision;
 
-        // TODO: This might not copy the object and just be a reference.
-        if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 0.0001)
+        if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 1.401298e-45)
             parent.timingChanges.pop();
 
         parent.timingChanges.push(newTimingChange);

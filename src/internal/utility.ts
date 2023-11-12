@@ -1,6 +1,13 @@
 export type FileEncoding = "utf7" | "utf8" | "utf16le" | "utf16be" | "utf32le" | "utf32be" | "unicode" | "unicodebe";
 
 export class Utility {
+    /**
+     * Format a number to `0.0000000` format.
+     */
+    static formatNumber(number: number): string {
+        return number.toFixed(7);
+    }
+
     static removeLineEndings(str: string): string {
         return str.replace(/(\r\n|\n|\r)/gm, "");
     }

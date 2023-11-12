@@ -18,6 +18,32 @@ export class Location {
     }
 
     public toString(): string {
-        return `index: ${this.index}, group: ${this.group.toString()}`;
+        switch (this.group) {
+            case NoteGroup.Tap:
+                return (this.index + 1).toString();
+            case NoteGroup.CSensor:
+                return "C";
+            default:
+                let groupChar = "";
+
+                switch (this.group) {
+                    case NoteGroup.ASensor:
+                        groupChar = "A";
+                        break;
+                    case NoteGroup.BSensor:
+                        groupChar = "B";
+                        break;
+                    case NoteGroup.DSensor:
+                        groupChar = "D";
+                        break;
+                    case NoteGroup.ESensor:
+                        groupChar = "E";
+                        break;
+                    // default:
+                    //  throw new ArgumentOutOfRangeException();
+                }
+
+                return groupChar + (this.index + 1).toString();
+        }
     }
 }
