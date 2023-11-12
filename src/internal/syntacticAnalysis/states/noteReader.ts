@@ -26,7 +26,8 @@ export class NoteReader {
         const currentNote = new Note(parent.currentNoteCollection!);
         currentNote.location = noteLocation;
 
-        const overrideTiming = new TimingChange(parent.currentNoteCollection!.time);
+        const overrideTiming = new TimingChange();
+        overrideTiming.tempo = parent.timingChanges[parent.timingChanges.length - 1].tempo;
 
         if (noteLocation.group !== NoteGroup.Tap) currentNote.type = NoteType.Touch;
 

@@ -15,7 +15,9 @@ export class TempoReader {
         let newTimingChange;
         {
             const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
-            newTimingChange = new TimingChange(oldTimingChange.tempo, oldTimingChange.subdivisions);
+            newTimingChange = new TimingChange();
+            newTimingChange.tempo = oldTimingChange.tempo;
+            newTimingChange.subdivisions = oldTimingChange.subdivisions;
         }
 
         newTimingChange.tempo = tempo;

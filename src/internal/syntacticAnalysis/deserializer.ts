@@ -41,7 +41,7 @@ export class Deserializer {
 
     constructor(sequence: Iterable<Token>) {
         this.enumerator = new Enumerator<Token>(sequence);
-        this.timingChanges.push(new TimingChange(0, 4));
+        this.timingChanges.push(new TimingChange());
         this.currentNoteCollection = undefined;
         this.currentTime = 0;
         this.endOfFile = false;

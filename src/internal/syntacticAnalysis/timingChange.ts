@@ -1,7 +1,7 @@
 export class TimingChange {
     public time: number = 0;
-    public tempo: number;
-    public subdivisions: number;
+    public tempo: number = 0;
+    public subdivisions: number = 0;
 
     get secondsPerBar(): number {
         // could use || here since number is falsy if 0
@@ -11,11 +11,6 @@ export class TimingChange {
     get secondsPerBeat(): number {
         // could use || here since number is falsy if 0
         return this.secondsPerBar / ((this.subdivisions === 0 ? 4 : this.subdivisions) / 4);
-    }
-
-    constructor(tempo: number, subdivisions: number = 4) {
-        this.tempo = tempo;
-        this.subdivisions = subdivisions;
     }
 
     public setSeconds(value: number) {
