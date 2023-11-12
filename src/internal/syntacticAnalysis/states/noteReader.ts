@@ -59,7 +59,7 @@ export class NoteReader {
                 }
 
                 case TokenType.Duration: {
-                    NoteReader.readDuration(token, parent.currentTiming, currentNote);
+                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length-1], token, currentNote);
                     break;
                 }
 
@@ -126,7 +126,7 @@ export class NoteReader {
         }
     }
 
-    private static readDuration(token: Token, timing: TimingChange, note: Note) {
+    private static readDuration(timing: TimingChange, token: Token, note: Note) {
         if (note.type !== NoteType.Break) note.type = NoteType.Hold;
 
         if (token.lexeme[0] === "#") {

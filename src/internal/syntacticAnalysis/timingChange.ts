@@ -1,4 +1,5 @@
 export class TimingChange {
+    public time: number = 0;
     public tempo: number;
     public subdivisions: number;
 
