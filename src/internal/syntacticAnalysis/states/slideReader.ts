@@ -53,7 +53,7 @@ export class SlideReader {
                 }
 
                 case TokenType.Duration: {
-                    SlideReader.readDuration(token, parent.currentTiming, path);
+                    SlideReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1], token, path);
                     break;
                 }
 
@@ -151,7 +151,7 @@ export class SlideReader {
         } while (parent.enumerator.current.type === TokenType.Location);
     }
 
-    private static readDuration(token: Token, timing: TimingChange, path: SlidePath) {
+    private static readDuration(timing: TimingChange, token: Token, path: SlidePath) {
         const startOfDurationDeclaration = 0;
         const overrideTiming = timing;
 

@@ -26,7 +26,8 @@ export class NoteReader {
         const currentNote = new Note(parent.currentNoteCollection!);
         currentNote.location = noteLocation;
 
-        const overrideTiming = new TimingChange(parent.currentNoteCollection!.time);
+        const overrideTiming = new TimingChange();
+        overrideTiming.tempo = parent.timingChanges[parent.timingChanges.length - 1].tempo;
 
         if (noteLocation.group !== NoteGroup.Tap) currentNote.type = NoteType.Touch;
 
@@ -59,7 +60,7 @@ export class NoteReader {
                 }
 
                 case TokenType.Duration: {
-                    NoteReader.readDuration(token, parent.currentTiming, currentNote);
+                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1], token, currentNote);
                     break;
                 }
 
@@ -101,9 +102,8 @@ export class NoteReader {
                 note.styles |= NoteStyles.Mine;
                 return;
             case "h":
-                if (note.type === NoteType.Break || note.type === NoteType.ForceInvalidate) break;
+                if (note.type !== NoteType.Break && note.type !== NoteType.ForceInvalidate) note.type = NoteType.Hold;
 
-                note.type = NoteType.Hold;
                 note.length ??= 0;
                 return;
             case "?":
@@ -126,7 +126,7 @@ export class NoteReader {
         }
     }
 
-    private static readDuration(token: Token, timing: TimingChange, note: Note) {
+    private static readDuration(timing: TimingChange, token: Token, note: Note) {
         if (note.type !== NoteType.Break) note.type = NoteType.Hold;
 
         if (token.lexeme[0] === "#") {
