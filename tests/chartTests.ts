@@ -101,6 +101,7 @@ describe("SimaiConvert", () => {
         const chart = SimaiConvert.deserialize(simaiFile.getValue("inote_3"));
 
         const serialized = SimaiConvert.serialize(chart);
+        console.log(serialized);
         assert.notEqual(serialized, "");
     });
 });
