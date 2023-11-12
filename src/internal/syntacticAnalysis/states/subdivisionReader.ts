@@ -17,7 +17,9 @@ export class SubdivisionReader {
             let newTimingChange;
             {
                 const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
-                newTimingChange = new TimingChange(oldTimingChange.tempo, oldTimingChange.subdivisions);
+                newTimingChange = new TimingChange();
+                newTimingChange.tempo = oldTimingChange.tempo;
+                newTimingChange.subdivisions = oldTimingChange.subdivisions;
             }
 
             newTimingChange.setSeconds(explicitTempo);
@@ -40,7 +42,9 @@ export class SubdivisionReader {
         let newTimingChange;
         {
             const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
-            newTimingChange = new TimingChange(oldTimingChange.tempo, oldTimingChange.subdivisions);
+            newTimingChange = new TimingChange();
+            newTimingChange.tempo = oldTimingChange.tempo;
+            newTimingChange.subdivisions = oldTimingChange.subdivisions;
         }
 
         newTimingChange.subdivisions = subdivision;
