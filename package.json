@@ -1,6 +1,6 @@
 {
     "name": "simai.js",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "A serializer(wip)/deserializer for the rhythm game chart format simai.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
