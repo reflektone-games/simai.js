@@ -21,8 +21,15 @@ export class Deserializer {
      */
     public readonly enumerator: Enumerator<Token>;
 
+    /**
+     * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
+     */
+    public readonly timingChanges: TimingChange[] = [new TimingChange(0, 4)];
     private _maxFinishTime: number = 0;
-    private _currentTime: number = 0;
+    /**
+     * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
+     */
+    public currentTime: number = 0;
     /**
      * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
      */
@@ -61,7 +68,7 @@ export class Deserializer {
                     break;
                 }
                 case TokenType.Location: {
-                    this.currentNoteCollection ??= new NoteCollection(this._currentTime);
+                    this.currentNoteCollection ??= new NoteCollection(this.currentTime);
 
                     if (token.lexeme[0] === "0") {
                         if (this.currentNoteCollection.eachStyle !== EachStyle.ForceBroken)
@@ -86,7 +93,7 @@ export class Deserializer {
                             this.currentNoteCollection = undefined;
                         }
 
-                        this._currentTime += this.currentTiming.secondsPerBeat;
+                        this.currentTime += this.timingChanges[this.timingChanges.length - 1].secondsPerBeat;
                     }
                     break;
                 case TokenType.EachDivider:
@@ -111,7 +118,7 @@ export class Deserializer {
                 case TokenType.SlideJoiner:
                     throw new ScopeMismatchException(token.line, token.character, ScopeType.Slide);
                 case TokenType.EndOfFile:
-                    this._chart.finishTiming = this._currentTime;
+                    this._chart.finishTiming = this.currentTime;
                     break;
                 case TokenType.None:
                     break;

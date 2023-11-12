@@ -11,6 +11,13 @@ export class TempoReader {
 
         if (isNaN(tempo)) throw new UnexpectedCharacterException(token.line, token.character, '0~9, or "."');
 
-        parent.currentTiming.tempo = tempo;
+        const newTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
+        newTimingChange.tempo = tempo;
+        newTimingChange.time = parent.currentTime;
+
+        if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 0.0001)
+            parent.timingChanges.pop();
+
+        parent.timingChanges.push(newTimingChange);
     }
 }
