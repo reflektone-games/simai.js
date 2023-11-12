@@ -59,7 +59,7 @@ export class NoteReader {
                 }
 
                 case TokenType.Duration: {
-                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length-1], token, currentNote);
+                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1], token, currentNote);
                     break;
                 }
 
@@ -101,9 +101,8 @@ export class NoteReader {
                 note.styles |= NoteStyles.Mine;
                 return;
             case "h":
-                if (note.type === NoteType.Break || note.type === NoteType.ForceInvalidate) break;
+                if (note.type !== NoteType.Break && note.type !== NoteType.ForceInvalidate) note.type = NoteType.Hold;
 
-                note.type = NoteType.Hold;
                 note.length ??= 0;
                 return;
             case "?":
