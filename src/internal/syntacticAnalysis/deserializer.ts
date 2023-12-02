@@ -88,7 +88,7 @@ export class Deserializer {
                 }
                 case TokenType.TimeStep:
                     {
-                        if (this.currentNoteCollection != null) {
+                        if (this.currentNoteCollection !== null) {
                             noteCollections.push(this.currentNoteCollection);
                             this.currentNoteCollection = undefined;
                         }
@@ -103,7 +103,7 @@ export class Deserializer {
                                 break;
 
                             case "`":
-                                if (this.currentNoteCollection != null)
+                                if (this.currentNoteCollection !== null)
                                     this.currentNoteCollection.eachStyle = EachStyle.ForceBroken;
                                 break;
                         }

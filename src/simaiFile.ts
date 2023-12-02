@@ -15,7 +15,7 @@ export class SimaiFile {
 
         for (let line of lines) {
             if (line.startsWith("&")) {
-                if (currentKey != "") {
+                if (currentKey !== "") {
                     result.set(currentKey, currentValue.trim());
                     currentValue = "";
                 }

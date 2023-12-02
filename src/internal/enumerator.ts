@@ -1,4 +1,4 @@
-export class Enumerator<T> {
+export class Enumerator<T> implements Iterable<T> {
     private _current: T | undefined;
     private _index: number = -1;
     private _done: boolean = false;
@@ -30,5 +30,17 @@ export class Enumerator<T> {
         this._index = -1;
         this._done = false;
         this._current = undefined;
+    }
+
+    [Symbol.iterator](): Iterator<T> {
+        return {
+            next: () => {
+                this.moveNext();
+                return {
+                    value: this.current,
+                    done: this.done,
+                };
+            },
+        }
     }
 }

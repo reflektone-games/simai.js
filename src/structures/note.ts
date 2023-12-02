@@ -24,7 +24,7 @@ export class Note {
     }
 
     get isEx() {
-        return (this.styles & NoteStyles.Ex) != 0;
+        return (this.styles & NoteStyles.Ex) !== 0;
     }
 
     get isStar() {
@@ -47,9 +47,9 @@ export class Note {
 
         writer += this.location.toString();
 
-        if ((this.styles & NoteStyles.Ex) != 0) writer += "x";
+        if ((this.styles & NoteStyles.Ex) !== 0) writer += "x";
 
-        if ((this.styles & NoteStyles.Mine) != 0) writer += "m";
+        if ((this.styles & NoteStyles.Mine) !== 0) writer += "m";
 
         if (this.type === NoteType.ForceInvalidate) writer += this.slideMorph === SlideMorph.FadeIn ? "?" : "!";
 
