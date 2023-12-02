@@ -154,9 +154,9 @@ export class Deserializer {
             case -1:
                 return (startLocation.index + 2) % 8 >= 4 ? SlideType.RingCw : SlideType.RingCcw;
             default:
-                var difference = endLocation.index - startLocation.index;
+                let difference = endLocation.index - startLocation.index;
 
-                var rotation = difference >= 0 ? (difference > 4 ? -1 : 1) : difference < -4 ? 1 : -1;
+                let rotation = difference >= 0 ? (difference > 4 ? -1 : 1) : difference < -4 ? 1 : -1;
 
                 return rotation > 0 ? SlideType.RingCw : SlideType.RingCcw;
         }

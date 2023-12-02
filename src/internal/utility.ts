@@ -89,15 +89,15 @@ export class Utility {
 
         const threshold = 0.1; // proportion of chars step 2 which must be zeroed to be diagnosed as utf-16. 0.1 = 10%
 
-        var count = 0;
-        for (var n = 0; n < taster; n += 2) if (textBytes[n] == 0) count++;
+        let count = 0;
+        for (let n = 0; n < taster; n += 2) if (textBytes[n] == 0) count++;
         if (count / taster > threshold) return "unicodebe"; // (big-endian)
 
         count = 0;
-        for (var n = 1; n < taster; n += 2) if (textBytes[n] == 0) count++;
+        for (let n = 1; n < taster; n += 2) if (textBytes[n] == 0) count++;
         if (count / taster > threshold) return "unicode"; // (little-endian)
 
-        for (var n = 0; n < taster - 9; n++) {
+        for (let n = 0; n < taster - 9; n++) {
             if (
                 ((String.fromCharCode(textBytes[n + 0]) !== "c" && String.fromCharCode(textBytes[n + 0]) !== "C") ||
                     (String.fromCharCode(textBytes[n + 1]) !== "h" && String.fromCharCode(textBytes[n + 1]) !== "H") ||
@@ -133,10 +133,10 @@ export class Utility {
             // )
             //     n++;
 
-            //   var nb = new byte[n - oldN]();
+            //   let nb = new byte[n - oldN]();
             //   Array.Copy(textBytes, oldN, nb, 0, n - oldN);
             //   try {
-            //     var internalEnc = Encoding.ASCII.GetString(nb);
+            //     let internalEnc = Encoding.ASCII.GetString(nb);
             //     return Encoding.GetEncoding(internalEnc);
             //   } catch {
             //     // If C# doesn't recognize the name of the encoding, break.

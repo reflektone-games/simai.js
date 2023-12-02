@@ -35,7 +35,7 @@ export class Note {
     }
 
     public getVisibleDuration(): number {
-        var baseValue = this.length ?? 0;
+        let baseValue = this.length ?? 0;
 
         if (this.slidePaths.length > 0) baseValue = Math.max(...this.slidePaths.map((s) => s.delay + s.duration));
 
