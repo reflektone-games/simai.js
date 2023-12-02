@@ -32,7 +32,7 @@ export class SlideReader {
         let manuallyMoved = true;
 
         while (!parent.endOfFile && (manuallyMoved || parent.moveNext())) {
-            var token = parent.enumerator.current;
+            const token = parent.enumerator.current!;
             manuallyMoved = false;
 
             switch (token.type) {
@@ -144,11 +144,11 @@ export class SlideReader {
         do {
             if (!parent.moveNext()) throw new UnsupportedSyntaxException(identityToken.line, identityToken.character);
 
-            const current = parent.enumerator.current;
+            const current = parent.enumerator.current!;
 
             const [isLocationToken, location] = Deserializer.tryReadLocation(current);
             if (isLocationToken) segment.vertices.push(location);
-        } while (parent.enumerator.current.type === TokenType.Location);
+        } while (parent.enumerator.current!.type === TokenType.Location);
     }
 
     private static readDuration(timing: TimingChange, token: Token, path: SlidePath) {

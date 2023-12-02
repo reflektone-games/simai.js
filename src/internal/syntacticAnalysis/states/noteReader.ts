@@ -36,7 +36,7 @@ export class NoteReader {
         let manuallyMoved = false;
 
         while (!parent.endOfFile && (manuallyMoved || parent.moveNext())) {
-            const token = parent.enumerator.current;
+            const token = parent.enumerator.current!;
             manuallyMoved = false;
 
             switch (token.type) {
