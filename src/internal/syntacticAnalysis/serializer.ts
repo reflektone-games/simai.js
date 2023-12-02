@@ -71,7 +71,7 @@ export class Serializer {
         for (let i = 0; i < notes.length; i++) {
             writer += notes[i].write();
 
-            if (i != notes.length - 1) writer += seperator;
+            if (i !== notes.length - 1) writer += seperator;
         }
 
         return writer;
