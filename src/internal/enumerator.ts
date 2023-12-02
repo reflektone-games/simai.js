@@ -5,8 +5,8 @@ export class Enumerator<T> implements Iterable<T> {
 
     constructor(private _source: Iterable<T>) {}
 
-    public get current(): T {
-        return this._current!;
+    public get current(): T | undefined {
+        return this._current;
     }
 
     public get index(): number {
@@ -37,7 +37,7 @@ export class Enumerator<T> implements Iterable<T> {
             next: () => {
                 this.moveNext();
                 return {
-                    value: this.current,
+                    value: this.current!,
                     done: this.done,
                 };
             },

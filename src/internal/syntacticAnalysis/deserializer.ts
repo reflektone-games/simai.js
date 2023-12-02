@@ -55,7 +55,7 @@ export class Deserializer {
         let manuallyMoved = false;
 
         while (!this.endOfFile && (manuallyMoved || this.moveNext())) {
-            const token = this.enumerator.current;
+            const token = this.enumerator.current!;
             manuallyMoved = false;
 
             switch (token.type) {
