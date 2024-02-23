@@ -61,10 +61,6 @@ export class Tokenizer {
 
         const c = this.advance();
 
-        if (this.decoratorChars.has(c)) return this.compileToken(TokenType.Decorator);
-        else if (this.eachDividerChars.has(c)) return this.compileToken(TokenType.EachDivider);
-        else if (this.separatorChars.has(c)) return undefined;
-
         switch (c) {
             case ",":
                 return this.compileToken(TokenType.TimeStep);
@@ -75,24 +71,38 @@ export class Tokenizer {
                 return this.compileSectionToken(TokenType.Subdivision, "{", "}");
             case "[":
                 return this.compileSectionToken(TokenType.Duration, "[", "]");
+        }
 
-            case "*":
-                return this.compileToken(TokenType.SlideJoiner);
+        const [isLocationToken, locationLength] = this.tryScanLocationToken();
+        if (isLocationToken) {
+            this._current += locationLength - 1;
+            return this.compileToken(TokenType.Location);
+        }
 
+        if (this.decoratorChars.has(c)) return this.compileToken(TokenType.Decorator);
+
+        const [isSlideDeclaration, slideLength] = this.isReadingSlideDeclaration();
+        if (isSlideDeclaration) {
+            this._current += slideLength - 1;
+            return this.compileToken(TokenType.Slide);
+        }
+
+        if (c === "*") return this.compileToken(TokenType.SlideJoiner);
+
+        if (this.eachDividerChars.has(c)) return this.compileToken(TokenType.EachDivider);
+
+        if (this.separatorChars.has(c)) {
+            // Ignore whitespace.
+            return undefined;
+        }
+
+        switch (c) {
             case "\n":
                 this._line++;
                 this._charIndex = 0;
                 return undefined;
 
-            case this.endOfFileChar:
-                try {
-                    const [isLocationToken, locationLength] = this.tryScanLocationToken();
-                    if (isLocationToken) {
-                        this._current += locationLength - 1;
-                        return this.compileToken(TokenType.Location);
-                    }
-                } catch (ignored) {}
-
+            case "E":
                 return this.compileToken(TokenType.EndOfFile);
 
             case "|": {
@@ -102,18 +112,6 @@ export class Tokenizer {
 
                 return undefined;
             }
-        }
-
-        const [isLocationToken, locationLength] = this.tryScanLocationToken();
-        if (isLocationToken) {
-            this._current += locationLength - 1;
-            return this.compileToken(TokenType.Location);
-        }
-
-        const [isSlideDeclaration, slideLength] = this.isReadingSlideDeclaration();
-        if (isSlideDeclaration) {
-            this._current += slideLength - 1;
-            return this.compileToken(TokenType.Slide);
         }
 
         throw new UnsupportedSyntaxException(this._line, this._charIndex);
@@ -202,6 +200,6 @@ export class Tokenizer {
      * @returns the last glyph without decrementing.
      */
     private peekPrevious(): string {
-        return this._current == 0 ? "" : this._sequence[this._current - 1];
+        return this._current === 0 ? "" : this._sequence[this._current - 1];
     }
 }
