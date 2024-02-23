@@ -129,7 +129,9 @@ export class NoteReader {
     private static readDuration(timing: TimingChange, token: Token, note: Note) {
         if (note.type !== NoteType.Break) note.type = NoteType.Hold;
 
-        if (token.lexeme[0] === "#") {
+        const indexOfHash = token.lexeme.indexOf("#");
+
+        if (indexOfHash === 0) {
             const explicitValue = parseFloat(token.lexeme.slice(1));
 
             if (isNaN(explicitValue))
@@ -139,12 +141,24 @@ export class NoteReader {
             return;
         }
 
+        if (indexOfHash !== -1) {
+            const tempo = parseFloat(token.lexeme.slice(0, indexOfHash));
+
+            if (isNaN(tempo)) throw new UnexpectedCharacterException(token.line, token.character + 1, '0~9, or "."');
+
+            timing.tempo = tempo;
+        }
+
         const indexOfSeparator = token.lexeme.indexOf(":");
-        const nominator = parseFloat(token.lexeme.slice(0, indexOfSeparator));
+        const nominator = parseFloat(token.lexeme.slice(indexOfHash + 1, indexOfSeparator));
         const denominator = parseFloat(token.lexeme.slice(indexOfSeparator + 1));
 
-        if (isNaN(nominator) || isNaN(denominator))
-            throw new UnexpectedCharacterException(token.line, token.character + 1, '0~9, or "."');
+        if (isNaN(nominator)) {
+            throw new UnexpectedCharacterException(token.line, token.character, '0~9, or "."');
+        }
+
+        if (isNaN(denominator))
+            throw new UnexpectedCharacterException(token.line, token.character + indexOfSeparator + 1, '0~9, or "."');
 
         note.length = (timing.secondsPerBar / (nominator / 4)) * denominator;
     }
