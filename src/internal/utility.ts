@@ -14,26 +14,31 @@ export class Utility {
 
     static tryGetEncoding(textBytes: Uint8Array, taster: number): FileEncoding {
         if (textBytes.byteLength >= 4) {
-            if (textBytes[0] == 0x00 && textBytes[1] == 0x00 && textBytes[2] == 0xfe && textBytes[3] == 0xff) {
+            if (textBytes[0] === 0x00 && textBytes[1] === 0x00 && textBytes[2] === 0xfe && textBytes[3] === 0xff) {
                 return "utf32be"; // UTF-32, big-endian
-            } else if (textBytes[0] == 0xff && textBytes[1] == 0xfe && textBytes[2] == 0x00 && textBytes[3] == 0x00) {
+            } else if (
+                textBytes[0] === 0xff &&
+                textBytes[1] === 0xfe &&
+                textBytes[2] === 0x00 &&
+                textBytes[3] === 0x00
+            ) {
                 return "utf32le"; // UTF-32, little-endian
             }
         } else if (textBytes.byteLength >= 2) {
-            if (textBytes[0] == 0xfe && textBytes[1] == 0xff) {
+            if (textBytes[0] === 0xfe && textBytes[1] === 0xff) {
                 return "utf16be"; // UTF-16, big-endian
-            } else if (textBytes[0] == 0xff && textBytes[1] == 0xfe) {
+            } else if (textBytes[0] === 0xff && textBytes[1] === 0xfe) {
                 return "utf16le"; // UTF-16, little-endian
             }
         } else if (textBytes.byteLength >= 3) {
-            if (textBytes[0] == 0xef && textBytes[1] == 0xbb && textBytes[2] == 0xbf) {
+            if (textBytes[0] === 0xef && textBytes[1] === 0xbb && textBytes[2] === 0xbf) {
                 return "utf8"; // UTF-8
-            } else if (textBytes[0] == 0x2b && textBytes[1] == 0x2f && textBytes[2] == 0x76) {
+            } else if (textBytes[0] === 0x2b && textBytes[1] === 0x2f && textBytes[2] === 0x76) {
                 return "utf7"; // UTF-7
             }
         }
 
-        if (taster == 0 || taster > textBytes.byteLength) taster = textBytes.byteLength; // Taster size can't be bigger than the filesize obviously.
+        if (taster === 0 || taster > textBytes.byteLength) taster = textBytes.byteLength; // Taster size can't be bigger than the filesize obviously.
 
         let i = 0;
         let utf8 = false;
@@ -90,11 +95,11 @@ export class Utility {
         const threshold = 0.1; // proportion of chars step 2 which must be zeroed to be diagnosed as utf-16. 0.1 = 10%
 
         let count = 0;
-        for (let n = 0; n < taster; n += 2) if (textBytes[n] == 0) count++;
+        for (let n = 0; n < taster; n += 2) if (textBytes[n] === 0) count++;
         if (count / taster > threshold) return "unicodebe"; // (big-endian)
 
         count = 0;
-        for (let n = 1; n < taster; n += 2) if (textBytes[n] == 0) count++;
+        for (let n = 1; n < taster; n += 2) if (textBytes[n] === 0) count++;
         if (count / taster > threshold) return "unicode"; // (little-endian)
 
         for (let n = 0; n < taster - 9; n++) {
@@ -119,14 +124,14 @@ export class Utility {
             )
                 continue;
 
-            if (String.fromCharCode(textBytes[n + 0]) == "c" || String.fromCharCode(textBytes[n + 0]) == "C") n += 8;
+            if (String.fromCharCode(textBytes[n + 0]) === "c" || String.fromCharCode(textBytes[n + 0]) === "C") n += 8;
             else n += 9;
-            if (String.fromCharCode(textBytes[n]) == '"' || String.fromCharCode(textBytes[n]) == "'") n++;
+            if (String.fromCharCode(textBytes[n]) === '"' || String.fromCharCode(textBytes[n]) === "'") n++;
 
             // while (
             //     n < taster &&
-            //     (String.fromCharCode(textBytes[n]) == "_" ||
-            //         String.fromCharCode(textBytes[n]) == "-" ||
+            //     (String.fromCharCode(textBytes[n]) === "_" ||
+            //         String.fromCharCode(textBytes[n]) === "-" ||
             //         (textBytes[n] >= "0".charCodeAt(0) && textBytes[n] <= "9".charCodeAt(0)) ||
             //         (textBytes[n] >= "a".charCodeAt(0) && textBytes[n] <= "z".charCodeAt(0)) ||
             //         (textBytes[n] >= "A".charCodeAt(0) && textBytes[n] <= "Z".charCodeAt(0)))

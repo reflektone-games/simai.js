@@ -16,7 +16,7 @@ export class SimaiFile {
         for (let line of lines) {
             if (line.startsWith("&")) {
                 if (currentKey !== "") {
-                    result.set(currentKey, currentValue.trim());
+                    result.set(currentKey, currentValue.trimEnd());
                     currentValue = "";
                 }
 
@@ -29,7 +29,7 @@ export class SimaiFile {
         }
 
         // Incase there is no trailing newline
-        if (currentKey) result.set(currentKey, currentValue.trim());
+        if (currentKey) result.set(currentKey, currentValue.trimEnd());
 
         return result;
     }
