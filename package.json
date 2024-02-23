@@ -26,6 +26,7 @@
         "url": "git+https://github.com/reflektone-games/simai.js.git"
     },
     "keywords": [
+        "serializer",
         "deserializer",
         "data-format",
         "maimai",
