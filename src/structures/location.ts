@@ -39,8 +39,8 @@ export class Location {
                     case NoteGroup.ESensor:
                         groupChar = "E";
                         break;
-                    // default:
-                    //  throw new ArgumentOutOfRangeException();
+                    default:
+                        throw new Error("Unknown note group");
                 }
 
                 return groupChar + (this.index + 1).toString();

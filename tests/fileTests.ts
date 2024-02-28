@@ -26,7 +26,7 @@ describe("SimaiFile", () => {
 
     it("should be able to read multiline chart", () => {
         // kvp here somehow have \r\n?
-        const kvp = _simaiFile.getValue("inote_3");
+        const kvp = _simaiFile.getValue("inote_3")!;
         assert.equal(
             kvp.replace(/\r\n/g, "\n"),
             `(170){16}7/2-6[8:1],,1-5[8:1],8,2,,1,,

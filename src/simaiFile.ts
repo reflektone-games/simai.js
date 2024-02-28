@@ -1,5 +1,4 @@
 export class SimaiFile {
-    // TODO: PLACEHOLDER
     public data: string = "";
 
     constructor(data: string) {
@@ -34,7 +33,7 @@ export class SimaiFile {
         return result;
     }
 
-    public getValue(key: string): string {
-        return this.toKeyValuePairs().get(key) ?? "";
+    public getValue(key: string): string | undefined {
+        return this.toKeyValuePairs().get(key);
     }
 }
