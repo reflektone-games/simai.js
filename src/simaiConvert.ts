@@ -7,7 +7,6 @@ export class SimaiConvert {
     public static deserialize(data: string): MaiChart {
         const tokens = new Tokenizer(data).getTokens();
         const chart = new Deserializer(tokens).getChart();
-
         return chart;
     }
 

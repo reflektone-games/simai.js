@@ -51,8 +51,8 @@ export class SlideSegment {
                 writer += `pp${this.vertices[0]}`;
             case SlideType.Fan:
                 writer += `w${this.vertices[0]}`;
-            // default:
-            //     throw new ArguementOutOfRangeException();
+            default:
+                throw new Error("Unknown slide type");
         }
 
         return writer;
