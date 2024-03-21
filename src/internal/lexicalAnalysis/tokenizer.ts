@@ -132,7 +132,10 @@ export class Tokenizer {
         if (firstLocationChar === "C") return [true, 1];
 
         const secondCharIsEmpty =
-            this.separatorChars.has(secondLocationChar) || secondLocationChar === "\n" || secondLocationChar === "\0";
+            this.separatorChars.has(secondLocationChar) ||
+            secondLocationChar === "\n" ||
+            secondLocationChar === "\0" ||
+            secondLocationChar === "";
 
         // This is the notation for EOF.
         if (firstLocationChar === this.endOfFileChar && secondCharIsEmpty) return [false, 0];
