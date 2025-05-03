@@ -4,6 +4,7 @@ assets/
 tests/
 src/
 
+pnpm-workspace.yaml
 tsup.config.ts
 .mocharc.jsonc
 .editorconfig
