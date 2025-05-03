@@ -1,6 +1,3 @@
-import { SlidePath } from "../../structures/slidePath";
-import { SlideType } from "../../structures/slideType";
-
 export enum TokenType {
     None,
     Tempo,

@@ -38,9 +38,9 @@ export class Enumerator<T> implements Iterable<T> {
                 this.moveNext();
                 return {
                     value: this.current!,
-                    done: this.done,
+                    done: this.done
                 };
-            },
-        }
+            }
+        };
     }
 }

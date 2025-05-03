@@ -2,7 +2,7 @@
 // This same configuration could be provided in the `mocha` property of your
 // project's `package.json`.
 {
-    "require": "ts-node/register",
+    "node-option": ["import=tsx"],
     "spec": "./tests/**/*.ts",
     "watch-files": ["src/**/*.ts", "tests/**/*.ts"]
 }

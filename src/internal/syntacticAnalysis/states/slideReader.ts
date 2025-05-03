@@ -146,6 +146,9 @@ export class SlideReader {
 
             const current = parent.enumerator.current!;
 
+            // I don't know what's going on :SOB:
+            if (current.type !== TokenType.Location) return;
+
             const [isLocationToken, location] = Deserializer.tryReadLocation(current);
             if (isLocationToken) segment.vertices.push(location);
         } while (parent.enumerator.current!.type === TokenType.Location);

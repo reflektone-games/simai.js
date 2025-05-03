@@ -1,6 +1,6 @@
+import { NoteCollection } from "../../structures/noteCollection";
 import { EachStyle } from "../../structures/eachStyle";
 import { MaiChart } from "../../structures/maiChart";
-import { NoteCollection } from "../../structures/noteCollection";
 
 /**
  * INTERNAL USAGE ONLY! DO NOT USE THIS PROPERTY DIRECTLY!
@@ -20,7 +20,7 @@ export class Serializer {
         while (this._currentTime <= (chart.finishTiming ? chart.finishTiming : 0)) {
             if (
                 this._currentTimingChange < chart.timingChanges.length - 1 &&
-                Math.abs(chart.timingChanges[this._currentTimingChange + 1].time - this._currentTime) < 1.401298E-45
+                Math.abs(chart.timingChanges[this._currentTimingChange + 1].time - this._currentTime) < 1.401298e-45
             ) {
                 this._currentTimingChange++;
 
@@ -28,7 +28,7 @@ export class Serializer {
                     Math.abs(
                         chart.timingChanges[this._currentTimingChange].tempo -
                             chart.timingChanges[this._currentTimingChange - 1].tempo
-                    ) > 1.401298E-45
+                    ) > 1.401298e-45
                 ) {
                     writer += `(${chart.timingChanges[this._currentTimingChange].tempo})`;
                 }
@@ -37,7 +37,7 @@ export class Serializer {
                     Math.abs(
                         chart.timingChanges[this._currentTimingChange].subdivisions -
                             chart.timingChanges[this._currentTimingChange - 1].subdivisions
-                    ) > 1.401298E-45
+                    ) > 1.401298e-45
                 ) {
                     writer += `{${chart.timingChanges[this._currentTimingChange].subdivisions}}`;
                 }
@@ -45,7 +45,7 @@ export class Serializer {
 
             if (
                 this._currentNoteCollection < chart.noteCollections.length &&
-                Math.abs(chart.noteCollections[this._currentNoteCollection].time - this._currentTime) <= 1.401298E-45
+                Math.abs(chart.noteCollections[this._currentNoteCollection].time - this._currentTime) <= 1.401298e-45
             ) {
                 writer += Serializer.serializeNoteCollection(chart.noteCollections[this._currentNoteCollection]);
 

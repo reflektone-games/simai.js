@@ -1,7 +1,12 @@
+import { fileURLToPath } from "node:url";
 import { SimaiFile } from "../src";
 import assert from "node:assert";
 import path from "node:path";
 import fs from "node:fs";
+
+// quick fix for __dirname and __filename
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // simai.js doesn't support reading charts from file due to compaltibility with the web, so we have to use node:fs to read the file.
 
@@ -9,7 +14,6 @@ const testChartPath = path.join(__dirname, "./resources/fileTests/");
 
 describe("SimaiFile", () => {
     const _simaiFile = new SimaiFile(fs.readFileSync(path.join(testChartPath, "./0.txt"), "utf-8"));
-
     it("should be able to convert to key value pair", () => {
         const kvp = _simaiFile.toKeyValuePairs();
         assert.equal(kvp.get("title"), "SimaiFileRead test case");
@@ -18,12 +22,10 @@ describe("SimaiFile", () => {
         assert.equal(kvp.get("lv_1"), "12+");
         assert.equal(kvp.get("inote_1"), "(170){4}A1/2,3h[4:1],E");
     });
-
     it("should be able to read indiviual key value pair", () => {
         const kvp = _simaiFile.getValue("inote_2");
         assert.equal(kvp, "(170){1},{8}6h[8:1]/2,7,,3h[8:1]/7,2,,6h[8:1]/2,5,,E");
     });
-
     it("should be able to read multiline chart", () => {
         // kvp here somehow have \r\n?
         const kvp = _simaiFile.getValue("inote_3")!;

@@ -1,9 +1,14 @@
 import { NoteGroup } from "../src/structures/noteGroup";
 import { Location } from "../src/structures/location";
 import { SimaiConvert, SimaiFile } from "../src";
+import { fileURLToPath } from "node:url";
 import fs from "node:fs/promises";
 import assert from "node:assert";
 import path from "node:path";
+
+// quick fix for __dirname and __filename
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const testChartPath = path.join(__dirname, "./resources/chartTests/");
 

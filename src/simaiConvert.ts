@@ -1,7 +1,7 @@
 import { Deserializer } from "./internal/syntacticAnalysis/deserializer";
+import { Serializer } from "./internal/syntacticAnalysis/serializer";
 import { Tokenizer } from "./internal/lexicalAnalysis/tokenizer";
 import { MaiChart } from "./structures/maiChart";
-import { Serializer } from "./internal/syntacticAnalysis/serializer";
 
 export class SimaiConvert {
     public static deserialize(data: string): MaiChart {
