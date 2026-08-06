@@ -1,26 +1,41 @@
 {
-    "compilerOptions": {
-        /* Visit https://aka.ms/tsconfig to read more about this file */
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src",
+    "outDir": "./dist",
 
-        /* Language and Environment */
-        "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "lib": ["esnext"],
+    "types": ["node"],
 
-        /* Modules */
-        "module": "commonjs" /* Specify what module code is generated. */,
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
 
-        /* Emit */
-        "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
-        "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
 
-        /* Interop Constraints */
-        "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-        "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
 
-        /* Type Checking */
-        "strict": true /* Enable all strict type-checking options. */,
-
-        /* Completeness */
-        "skipLibCheck": true /* Skip type checking all .d.ts files. */
-    },
-    "include": ["src"]
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  },
+  "include": ["src"],
+  "exclude": ["tests"]
 }

@@ -189,20 +189,20 @@ export class Tokenizer {
      * @returns the {@link _current} glyph, and increments by one.
      */
     private advance(): string {
-        return this._sequence[this._current++];
+        return this._sequence[this._current++]!;
     }
 
     /**
      * @returns the {@link _current} glyph without incrementing.
      */
     private peek(): string {
-        return this.isAtEnd ? "" : this._sequence[this._current];
+        return this.isAtEnd ? "" : this._sequence[this._current]!;
     }
 
     /**
      * @returns the last glyph without decrementing.
      */
     private peekPrevious(): string {
-        return this._current === 0 ? "" : this._sequence[this._current - 1];
+        return this._current === 0 ? "" : this._sequence[this._current - 1]!;
     }
 }

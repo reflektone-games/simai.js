@@ -65,12 +65,12 @@ export class Note {
                 break;
         }
 
-        if (this.length) `h[#${this.length.toFixed(7)}]`;
+        if (this.length) writer += `h[#${this.length.toFixed(7)}]`;
 
         for (let i = 0; i < this.slidePaths.length; i++) {
             if (i > 0) writer += "*";
 
-            writer += this.slidePaths[i].write();
+            writer += this.slidePaths[i]!.write();
         }
 
         return writer;

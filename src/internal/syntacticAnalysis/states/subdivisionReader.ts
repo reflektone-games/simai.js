@@ -18,15 +18,15 @@ export class SubdivisionReader {
             {
                 const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
                 newTimingChange = new TimingChange();
-                newTimingChange.tempo = oldTimingChange.tempo;
-                newTimingChange.subdivisions = oldTimingChange.subdivisions;
+                newTimingChange.tempo = oldTimingChange!.tempo;
+                newTimingChange.subdivisions = oldTimingChange!.subdivisions;
             }
 
             newTimingChange.setSeconds(explicitTempo);
             newTimingChange.time = parent.currentTime;
 
             if (
-                Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <=
+                Math.abs(parent.timingChanges[parent.timingChanges.length - 1]!.time - parent.currentTime) <=
                 1.401298e-45
             )
                 parent.timingChanges.pop();
@@ -43,14 +43,14 @@ export class SubdivisionReader {
         {
             const oldTimingChange = parent.timingChanges[parent.timingChanges.length - 1];
             newTimingChange = new TimingChange();
-            newTimingChange.tempo = oldTimingChange.tempo;
-            newTimingChange.subdivisions = oldTimingChange.subdivisions;
+            newTimingChange.tempo = oldTimingChange!.tempo;
+            newTimingChange.subdivisions = oldTimingChange!.subdivisions;
         }
 
         newTimingChange.subdivisions = subdivision;
         newTimingChange.time = parent.currentTime;
 
-        if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1].time - parent.currentTime) <= 1.401298e-45)
+        if (Math.abs(parent.timingChanges[parent.timingChanges.length - 1]!.time - parent.currentTime) <= 1.401298e-45)
             parent.timingChanges.pop();
 
         parent.timingChanges.push(newTimingChange);

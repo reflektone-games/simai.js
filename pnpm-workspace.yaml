@@ -1,2 +1,6 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - tsx@4.23.8
 onlyBuiltDependencies:
-    - esbuild
+  - esbuild

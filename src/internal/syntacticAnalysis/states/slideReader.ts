@@ -23,6 +23,7 @@ export class SlideReader {
         defaultTimingChange: TimingChange
     ): SlidePath {
         const path = new SlidePath([]);
+        path.startLocation = currentNote.location;
         path.delay = defaultTimingChange.secondsPerBeat;
 
         SlideReader.readSegment(parent, identityToken, currentNote.location, path);
@@ -46,14 +47,16 @@ export class SlideReader {
                 }
 
                 case TokenType.Slide: {
-                    const segments = path.segments[path.segments.length - 1];
-                    SlideReader.readSegment(parent, token, segments.vertices[segments.vertices.length - 1], path);
+                    // Basically path.segments[^1].vertices[^1]
+                    const lastSegment = path.segments[path.segments.length - 1]!;
+                    const lastVertex = lastSegment.vertices[lastSegment.vertices.length - 1]!;
+                    SlideReader.readSegment(parent, token, lastVertex, path);
                     manuallyMoved = true;
                     break;
                 }
 
                 case TokenType.Duration: {
-                    SlideReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1], token, path);
+                    SlideReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1]!, token, path);
                     break;
                 }
 
@@ -89,6 +92,9 @@ export class SlideReader {
         const segment = new SlideSegment([]);
         const length = identityToken.lexeme.length;
         SlideReader.assignVertices(parent, identityToken, segment);
+
+        if (segment.vertices.length === 0) throw new UnsupportedSyntaxException(identityToken.line, identityToken.character);
+
         segment.slideType = SlideReader.identifySlideType(identityToken, startingLocation, segment, length);
 
         path.segments.push(segment);
@@ -114,11 +120,11 @@ export class SlideReader {
             case "-":
                 return SlideType.StraightLine;
             case ">":
-                return Deserializer.determineRingType(startingLocation, segment.vertices[0], 1);
+                return Deserializer.determineRingType(startingLocation, segment.vertices[0]!, 1);
             case "<":
-                return Deserializer.determineRingType(startingLocation, segment.vertices[0], -1);
+                return Deserializer.determineRingType(startingLocation, segment.vertices[0]!, -1);
             case "^":
-                return Deserializer.determineRingType(startingLocation, segment.vertices[0]);
+                return Deserializer.determineRingType(startingLocation, segment.vertices[0]!);
             case "q":
                 if (length === 2 && identityToken.lexeme[1] === "q") return SlideType.EdgeCurveCw;
                 return SlideType.CurveCw;
@@ -156,7 +162,8 @@ export class SlideReader {
 
     private static readDuration(timing: TimingChange, token: Token, path: SlidePath) {
         const startOfDurationDeclaration = 0;
-        const overrideTiming = timing;
+        const overrideTiming = new TimingChange();
+        overrideTiming.tempo = timing.tempo;
 
         // (Optional) Intro delay duration:
         // By tempo: T#d (T: tempo, d: slide duration)

@@ -14,45 +14,45 @@ export class Serializer {
     public serialize(chart: MaiChart): string {
         let writer = "";
 
-        writer += `(${chart.timingChanges[this._currentTimingChange].tempo})`;
-        writer += `{${chart.timingChanges[this._currentTimingChange].subdivisions}}`;
+        writer += `(${chart.timingChanges[this._currentTimingChange]!.tempo})`;
+        writer += `{${chart.timingChanges[this._currentTimingChange]!.subdivisions}}`;
 
         while (this._currentTime <= (chart.finishTiming ? chart.finishTiming : 0)) {
             if (
                 this._currentTimingChange < chart.timingChanges.length - 1 &&
-                Math.abs(chart.timingChanges[this._currentTimingChange + 1].time - this._currentTime) < 1.401298e-45
+                Math.abs(chart.timingChanges[this._currentTimingChange + 1]!.time - this._currentTime) < 1.401298e-45
             ) {
                 this._currentTimingChange++;
 
                 if (
                     Math.abs(
-                        chart.timingChanges[this._currentTimingChange].tempo -
-                            chart.timingChanges[this._currentTimingChange - 1].tempo
+                        chart.timingChanges[this._currentTimingChange]!.tempo -
+                            chart.timingChanges[this._currentTimingChange - 1]!.tempo
                     ) > 1.401298e-45
                 ) {
-                    writer += `(${chart.timingChanges[this._currentTimingChange].tempo})`;
+                    writer += `(${chart.timingChanges[this._currentTimingChange]!.tempo})`;
                 }
 
                 if (
                     Math.abs(
-                        chart.timingChanges[this._currentTimingChange].subdivisions -
-                            chart.timingChanges[this._currentTimingChange - 1].subdivisions
+                        chart.timingChanges[this._currentTimingChange]!.subdivisions -
+                            chart.timingChanges[this._currentTimingChange - 1]!.subdivisions
                     ) > 1.401298e-45
                 ) {
-                    writer += `{${chart.timingChanges[this._currentTimingChange].subdivisions}}`;
+                    writer += `{${chart.timingChanges[this._currentTimingChange]!.subdivisions}}`;
                 }
             }
 
             if (
                 this._currentNoteCollection < chart.noteCollections.length &&
-                Math.abs(chart.noteCollections[this._currentNoteCollection].time - this._currentTime) <= 1.401298e-45
+                Math.abs(chart.noteCollections[this._currentNoteCollection]!.time - this._currentTime) <= 1.401298e-45
             ) {
-                writer += Serializer.serializeNoteCollection(chart.noteCollections[this._currentNoteCollection]);
+                writer += Serializer.serializeNoteCollection(chart.noteCollections[this._currentNoteCollection]!);
 
                 this._currentNoteCollection++;
             }
 
-            const timingChange = chart.timingChanges[this._currentTimingChange];
+            const timingChange = chart.timingChanges[this._currentTimingChange]!;
             this._currentTime += timingChange.secondsPerBeat;
             writer += ",";
         }
@@ -69,7 +69,7 @@ export class Serializer {
         if (notes.eachStyle === EachStyle.ForceEach) writer += "0/";
 
         for (let i = 0; i < notes.length; i++) {
-            writer += notes[i].write();
+            writer += notes[i]!.write();
 
             if (i !== notes.length - 1) writer += seperator;
         }

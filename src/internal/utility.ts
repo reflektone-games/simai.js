@@ -44,14 +44,14 @@ export class Utility {
         let utf8 = false;
 
         while (i < taster - 4) {
-            if (textBytes[i] <= 0x7f) {
+            if (textBytes[i]! <= 0x7f) {
                 i += 1;
                 continue;
             } else if (
-                textBytes[i] >= 0xc2 &&
-                textBytes[i] < 0xe0 &&
-                textBytes[i + 1] >= 0x80 &&
-                textBytes[i + 1] < 0xc0
+                textBytes[i]! >= 0xc2 &&
+                textBytes[i]! < 0xe0 &&
+                textBytes[i + 1]! >= 0x80 &&
+                textBytes[i + 1]! < 0xc0
             ) {
                 i += 2;
                 utf8 = true;
@@ -59,12 +59,12 @@ export class Utility {
             }
 
             if (
-                textBytes[i] >= 0xe0 &&
-                textBytes[i] < 0xf0 &&
-                textBytes[i + 1] >= 0x80 &&
-                textBytes[i + 1] < 0xc0 &&
-                textBytes[i + 2] >= 0x80 &&
-                textBytes[i + 2] < 0xc0
+                textBytes[i]! >= 0xe0 &&
+                textBytes[i]! < 0xf0 &&
+                textBytes[i + 1]! >= 0x80 &&
+                textBytes[i + 1]! < 0xc0 &&
+                textBytes[i + 2]! >= 0x80 &&
+                textBytes[i + 2]! < 0xc0
             ) {
                 i += 3;
                 utf8 = true;
@@ -72,14 +72,14 @@ export class Utility {
             }
 
             if (
-                textBytes[i] >= 0xf0 &&
-                textBytes[i] < 0xf5 &&
-                textBytes[i + 1] >= 0x80 &&
-                textBytes[i + 1] < 0xc0 &&
-                textBytes[i + 2] >= 0x80 &&
-                textBytes[i + 2] < 0xc0 &&
-                textBytes[i + 3] >= 0x80 &&
-                textBytes[i + 3] < 0xc0
+                textBytes[i]! >= 0xf0 &&
+                textBytes[i]! < 0xf5 &&
+                textBytes[i + 1]! >= 0x80 &&
+                textBytes[i + 1]! < 0xc0 &&
+                textBytes[i + 2]! >= 0x80 &&
+                textBytes[i + 2]! < 0xc0 &&
+                textBytes[i + 3]! >= 0x80 &&
+                textBytes[i + 3]! < 0xc0
             ) {
                 i += 4;
                 utf8 = true;
@@ -104,29 +104,29 @@ export class Utility {
 
         for (let n = 0; n < taster - 9; n++) {
             if (
-                ((String.fromCharCode(textBytes[n + 0]) !== "c" && String.fromCharCode(textBytes[n + 0]) !== "C") ||
-                    (String.fromCharCode(textBytes[n + 1]) !== "h" && String.fromCharCode(textBytes[n + 1]) !== "H") ||
-                    (String.fromCharCode(textBytes[n + 2]) !== "a" && String.fromCharCode(textBytes[n + 2]) !== "A") ||
-                    (String.fromCharCode(textBytes[n + 3]) !== "r" && String.fromCharCode(textBytes[n + 3]) !== "R") ||
-                    (String.fromCharCode(textBytes[n + 4]) !== "s" && String.fromCharCode(textBytes[n + 4]) !== "S") ||
-                    (String.fromCharCode(textBytes[n + 5]) !== "e" && String.fromCharCode(textBytes[n + 5]) !== "E") ||
-                    (String.fromCharCode(textBytes[n + 6]) !== "t" && String.fromCharCode(textBytes[n + 6]) !== "T") ||
-                    String.fromCharCode(textBytes[n + 7]) !== "=") &&
-                ((String.fromCharCode(textBytes[n + 0]) !== "e" && String.fromCharCode(textBytes[n + 0]) !== "E") ||
-                    (String.fromCharCode(textBytes[n + 1]) !== "n" && String.fromCharCode(textBytes[n + 1]) !== "N") ||
-                    (String.fromCharCode(textBytes[n + 2]) !== "c" && String.fromCharCode(textBytes[n + 2]) !== "C") ||
-                    (String.fromCharCode(textBytes[n + 3]) !== "o" && String.fromCharCode(textBytes[n + 3]) !== "O") ||
-                    (String.fromCharCode(textBytes[n + 4]) !== "d" && String.fromCharCode(textBytes[n + 4]) !== "D") ||
-                    (String.fromCharCode(textBytes[n + 5]) !== "i" && String.fromCharCode(textBytes[n + 5]) !== "I") ||
-                    (String.fromCharCode(textBytes[n + 6]) !== "n" && String.fromCharCode(textBytes[n + 6]) !== "N") ||
-                    (String.fromCharCode(textBytes[n + 7]) !== "g" && String.fromCharCode(textBytes[n + 7]) !== "G") ||
-                    String.fromCharCode(textBytes[n + 8]) !== "=")
+                ((String.fromCharCode(textBytes[n + 0]!) !== "c" && String.fromCharCode(textBytes[n + 0]!) !== "C") ||
+                    (String.fromCharCode(textBytes[n + 1]!) !== "h" && String.fromCharCode(textBytes[n + 1]!) !== "H") ||
+                    (String.fromCharCode(textBytes[n + 2]!) !== "a" && String.fromCharCode(textBytes[n + 2]!) !== "A") ||
+                    (String.fromCharCode(textBytes[n + 3]!) !== "r" && String.fromCharCode(textBytes[n + 3]!) !== "R") ||
+                    (String.fromCharCode(textBytes[n + 4]!) !== "s" && String.fromCharCode(textBytes[n + 4]!) !== "S") ||
+                    (String.fromCharCode(textBytes[n + 5]!) !== "e" && String.fromCharCode(textBytes[n + 5]!) !== "E") ||
+                    (String.fromCharCode(textBytes[n + 6]!) !== "t" && String.fromCharCode(textBytes[n + 6]!) !== "T") ||
+                    String.fromCharCode(textBytes[n + 7]!) !== "=") &&
+                ((String.fromCharCode(textBytes[n + 0]!) !== "e" && String.fromCharCode(textBytes[n + 0]!) !== "E") ||
+                    (String.fromCharCode(textBytes[n + 1]!) !== "n" && String.fromCharCode(textBytes[n + 1]!) !== "N") ||
+                    (String.fromCharCode(textBytes[n + 2]!) !== "c" && String.fromCharCode(textBytes[n + 2]!) !== "C") ||
+                    (String.fromCharCode(textBytes[n + 3]!) !== "o" && String.fromCharCode(textBytes[n + 3]!) !== "O") ||
+                    (String.fromCharCode(textBytes[n + 4]!) !== "d" && String.fromCharCode(textBytes[n + 4]!) !== "D") ||
+                    (String.fromCharCode(textBytes[n + 5]!) !== "i" && String.fromCharCode(textBytes[n + 5]!) !== "I") ||
+                    (String.fromCharCode(textBytes[n + 6]!) !== "n" && String.fromCharCode(textBytes[n + 6]!) !== "N") ||
+                    (String.fromCharCode(textBytes[n + 7]!) !== "g" && String.fromCharCode(textBytes[n + 7]!) !== "G") ||
+                    String.fromCharCode(textBytes[n + 8]!) !== "=")
             )
                 continue;
 
-            if (String.fromCharCode(textBytes[n + 0]) === "c" || String.fromCharCode(textBytes[n + 0]) === "C") n += 8;
+            if (String.fromCharCode(textBytes[n + 0]!) === "c" || String.fromCharCode(textBytes[n + 0]!) === "C") n += 8;
             else n += 9;
-            if (String.fromCharCode(textBytes[n]) === '"' || String.fromCharCode(textBytes[n]) === "'") n++;
+            if (String.fromCharCode(textBytes[n + 8]!) === '"' || String.fromCharCode(textBytes[n + 8]!) === "'") n++;
 
             // while (
             //     n < taster &&

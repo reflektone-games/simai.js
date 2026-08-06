@@ -20,7 +20,7 @@ export class SimaiFile {
                 }
 
                 let keyValuePair: string[] = line.split("=", 2);
-                currentKey = keyValuePair[0].substring(1);
+                currentKey = keyValuePair[0]!.substring(1);
                 currentValue += keyValuePair[1] + "\n";
             } else {
                 currentValue += line + "\n";

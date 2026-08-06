@@ -27,7 +27,7 @@ export class NoteReader {
         currentNote.location = noteLocation;
 
         const overrideTiming = new TimingChange();
-        overrideTiming.tempo = parent.timingChanges[parent.timingChanges.length - 1].tempo;
+        overrideTiming.tempo = parent.timingChanges[parent.timingChanges.length - 1]!.tempo;
 
         if (noteLocation.group !== NoteGroup.Tap) currentNote.type = NoteType.Touch;
 
@@ -60,7 +60,7 @@ export class NoteReader {
                 }
 
                 case TokenType.Duration: {
-                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1], token, currentNote);
+                    NoteReader.readDuration(parent.timingChanges[parent.timingChanges.length - 1]!, token, currentNote);
                     break;
                 }
 
@@ -130,6 +130,8 @@ export class NoteReader {
         if (note.type !== NoteType.Break) note.type = NoteType.Hold;
 
         const indexOfHash = token.lexeme.indexOf("#");
+        const overrideTiming = new TimingChange();
+        overrideTiming.tempo = timing.tempo;
 
         if (indexOfHash === 0) {
             const explicitValue = parseFloat(token.lexeme.slice(1));
@@ -146,7 +148,7 @@ export class NoteReader {
 
             if (isNaN(tempo)) throw new UnexpectedCharacterException(token.line, token.character + 1, '0~9, or "."');
 
-            timing.tempo = tempo;
+            overrideTiming.tempo = tempo;
         }
 
         const indexOfSeparator = token.lexeme.indexOf(":");
@@ -160,6 +162,6 @@ export class NoteReader {
         if (isNaN(denominator))
             throw new UnexpectedCharacterException(token.line, token.character + indexOfSeparator + 1, '0~9, or "."');
 
-        note.length = (timing.secondsPerBar / (nominator / 4)) * denominator;
+        note.length = (overrideTiming.secondsPerBar / (nominator / 4)) * denominator;
     }
 }

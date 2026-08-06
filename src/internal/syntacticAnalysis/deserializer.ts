@@ -93,7 +93,7 @@ export class Deserializer {
                             this.currentNoteCollection = undefined;
                         }
 
-                        this.currentTime += this.timingChanges[this.timingChanges.length - 1].secondsPerBeat;
+                        this.currentTime += this.timingChanges[this.timingChanges.length - 1]!.secondsPerBeat;
                     }
                     break;
                 case TokenType.EachDivider:
@@ -167,13 +167,13 @@ export class Deserializer {
      */
     public static tryReadLocation(token: Token): [boolean, Location] {
         const isSensor =
-            token.lexeme[0].charCodeAt(0) >= "A".charCodeAt(0) && token.lexeme[0].charCodeAt(0) <= "E".charCodeAt(0);
+            token.lexeme[0]!.charCodeAt(0) >= "A".charCodeAt(0) && token.lexeme[0]!.charCodeAt(0) <= "E".charCodeAt(0);
         const indexRange = isSensor ? token.lexeme.substring(1) : token.lexeme.substring(0);
 
         let group = NoteGroup.Tap;
 
         if (isSensor) {
-            group = (token.lexeme[0].charCodeAt(0) - "A".charCodeAt(0) + 1) as NoteGroup;
+            group = (token.lexeme[0]!.charCodeAt(0) - "A".charCodeAt(0) + 1) as NoteGroup;
 
             if (group === NoteGroup.CSensor) {
                 return [true, new Location(0, group)];

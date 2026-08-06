@@ -47,10 +47,13 @@ export class SlideSegment {
                 break;
             case SlideType.EdgeCurveCw:
                 writer += `qq${this.vertices[0]}`;
+                break;
             case SlideType.EdgeCurveCcw:
                 writer += `pp${this.vertices[0]}`;
+                break;
             case SlideType.Fan:
                 writer += `w${this.vertices[0]}`;
+                break;
             default:
                 throw new Error("Unknown slide type");
         }
