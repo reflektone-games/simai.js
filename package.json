@@ -2,7 +2,7 @@
     "name": "simai.js",
     "version": "1.1.4",
     "description": "A serializer/deserializer for the rhythm game chart format simai.",
-    "main": "dist/index.js",
+    "main": "dist/index.cjs",
     "module": "dist/index.mjs",
     "type": "commonjs",
     "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
         },
         "require": {
             "types": "./dist/index.d.ts",
-            "default": "./dist/index.js"
+            "default": "./dist/index.cjs"
         }
     },
     "scripts": {
