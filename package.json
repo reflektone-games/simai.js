@@ -47,5 +47,6 @@
         "tsdown": "^0.22.14",
         "tsx": "^4.23.8",
         "typescript": "^7.0.2"
-    }
+    },
+    "packageManager": "pnpm@11.20.0"
 }
